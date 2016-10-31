@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.1.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>To Do List</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>To Do List</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Add a item to the list:</h2>
+          <form id="new-contact">
+            <div class="form-group">
+              <label for="new-task">Task</label>
+              <input type="text" class="form-control" id="new-task">
+            </div>
+            <div class="form-group">
+              <label for="new-due-date">Due Date</label>
+              <input type="date" class="form-control" id="new-due-date">
+            </div>
+              <button type="submit" class="btn">Add</button>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" id="output">
+          <form>
+            <ul>
+
+            </ul>
+          </form>
+        </div>
+      </div>
+      <div>
+        <p>You have <span id="undone-tally"></span> tasks remaining.</p>
+      </div>
+    </div>
+  </body>
+</html>
