@@ -13,7 +13,7 @@
         <h1>To Do List</h1>
       </div>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
           <h2>Add a item to the list:</h2>
           <form id="new-contact">
             <div class="form-group">
@@ -27,18 +27,17 @@
               <button type="submit" class="btn">Add</button>
           </form>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12" id="output">
+        <div class="col-md-6" id="output">
           <form>
             <ul>
 
             </ul>
           </form>
+          <div>
+            <p>You have <span id="undone-tally"></span> tasks remaining.</p>
+          </div>
+          <button type="button" class="btn" id="clear">Clear Done</button>
         </div>
-      </div>
-      <div>
-        <p>You have <span id="undone-tally"></span> tasks remaining.</p>
       </div>
     </div>
   </body>
