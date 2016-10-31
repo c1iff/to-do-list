@@ -21,12 +21,35 @@ function checked(itemPair) {
   return !(itemPair[1].done);
 }
 
+function refreshList() {
+  $("#output ul").text("");
+  toDoObjects.forEach(function(task) {
+    $("#output ul").append('<li class="task-output"><label><input type="checkbox"> ' + task[1].task + "</label></li>" )
 
+    $("#output form :checkbox").last().change(function() {
+      console.log("test");
+      task[1].isDone();
+      if (this.checked) {
+        $(this).parent().addClass("done");
+      } else {
+        $(this).parent().removeClass("done");
+      }
+      undoneTally = 0;
+      $("#output form :checkbox").each(function() {
+        if (!this.checked) {
+          undoneTally++;
+        }
+      })
+      $("#undone-tally").text(undoneTally);
+    });
+  });
+}
+
+//User Interface
 $(document).ready(function() {
 
   $("#undone-tally").text(undoneTally);
   $("form").submit(function(event) {
-    console.log(toDoObjects);
     undoneTally++;
     $("#undone-tally").text(undoneTally);
     event.preventDefault();
@@ -36,62 +59,13 @@ $(document).ready(function() {
     var newObject = new toDoItem(task, date)
     toDoObjects.push([date, newObject]);
     toDoObjects.sort();
-    console.log(toDoObjects);
 
-    $("#output ul").text("");
-
-    toDoObjects.forEach(function(task) {
-      console.log(task, task[1]);
-      $("#output ul").append('<li class="task-output"><label><input type="checkbox"> ' + task[1].task + "</label></li>" )
-
-      $("#output form :checkbox").last().change(function() {
-        console.log("test");
-        task[1].isDone();
-        if (this.checked) {
-          $(this).parent().addClass("done");
-          console.log(task[1].done);
-        } else {
-          $(this).parent().removeClass("done");
-          console.log(task[1].done);
-        }
-        undoneTally = 0;
-        $("#output form :checkbox").each(function() {
-          if (!this.checked) {
-            undoneTally++;
-          }
-        })
-        $("#undone-tally").text(undoneTally);
-      });
-
-    });
-
+    refreshList();
   });
+
   $("#clear").click(function(){
     toDoObjects = toDoObjects.filter(checked);
-    $("#output ul").text("");
 
-    toDoObjects.forEach(function(task) {
-      console.log(task, task[1]);
-      $("#output ul").append('<li class="task-output"><label><input type="checkbox"> ' + task[1].task + "</label></li>" )
-
-      $("#output form :checkbox").last().change(function() {
-        console.log("test");
-        task[1].isDone();
-        if (this.checked) {
-          $(this).parent().addClass("done");
-          console.log(task[1].done);
-        } else {
-          $(this).parent().removeClass("done");
-          console.log(task[1].done);
-        }
-        undoneTally = 0;
-        $("#output form :checkbox").each(function() {
-          if (!this.checked) {
-            undoneTally++;
-          }
-        })
-        $("#undone-tally").text(undoneTally);
-      });
-    });
+    refreshList();
   });
 });
