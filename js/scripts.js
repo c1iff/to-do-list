@@ -55,7 +55,7 @@ function refreshList() {
 
     //add listener to show details when clicked
     $(".listItem").last().click(function() {
-      console.log("test", task[1]);
+      $(".detail-group").slideUp();
       $(this).parent().children(".detail-group").slideToggle();
       $(".task-details").text(task[1].task);
       $(".date-details").text(task[1].dueDate);
