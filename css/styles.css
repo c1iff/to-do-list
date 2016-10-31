@@ -1,8 +1,17 @@
 li {
   list-style: none;
+  color: blue;
+}
+
+li:hover {
+  color: green;
 }
 
 .done {
   color: gray;
   text-decoration: line-through;
+}
+
+.detail-group {
+  display: none;
 }
