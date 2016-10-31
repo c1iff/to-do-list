@@ -32,7 +32,6 @@ function refreshList() {
 
     //add checkbox listener to set done status(change object done boolean, add done class to list item)
     $("#output form :checkbox").last().change(function() {
-      console.log("test");
       task[1].isDone();
       if (this.checked) {
         $(this).parent().parent().addClass("done");
@@ -67,8 +66,17 @@ function refreshList() {
 
 //User Interface
 $(document).ready(function() {
-
   $("#undone-tally").text(undoneTally);
+
+  $("#new-due-date").change(function() {
+    $(this).parent().removeClass("has-error");
+    $("#new-task").parent().removeClass("has-error");
+  })
+  $("#new-task").change(function() {
+    $(this).parent().removeClass("has-error");
+    $("#new-due-date").parent().removeClass("has-error");
+  })
+
   $("form").submit(function(event) {
     undoneTally++;
     $("#undone-tally").text(undoneTally);
@@ -77,13 +85,22 @@ $(document).ready(function() {
     var date = $("#new-due-date").val();
     var details = $("#new-details").val();
 
-    var newObject = new toDoItem(task, date, details);
-    toDoObjects.push([date, newObject]);
-    toDoObjects.sort();
+    if (date && task) {
+      var newObject = new toDoItem(task, date, details);
+      toDoObjects.push([date, newObject]);
+      toDoObjects.sort();
 
-    refreshList();
+      refreshList();
 
-    console.log(toDoObjects);
+      $("#new-task").val("");
+      $("#new-due-date").val("");
+      $("#new-details").val("");
+
+    } else {
+      $("#new-due-date").parent().addClass("has-error");
+      $("#new-task").parent().addClass("has-error");
+    }
+
   });
 
   $("#clear").click(function(){

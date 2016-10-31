@@ -1,15 +1,21 @@
-li {
-  list-style: none;
+
+
+.listItem:hover {
   color: blue;
+  cursor: pointer; cursor: hand;
 }
 
-li:hover {
-  color: green;
+li {
+  list-style: none;
 }
 
 .done {
   color: gray;
   text-decoration: line-through;
+}
+
+.listItem {
+  color: blue;
 }
 
 .detail-group {
